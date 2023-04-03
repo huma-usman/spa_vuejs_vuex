@@ -20,9 +20,6 @@
 
 export default {
   name: 'DataPagination',
-  mounted() {
-    this.$store.dispatch('getData');
-  },
   computed: {
     data() {
       return this.$store.getters.dataArray

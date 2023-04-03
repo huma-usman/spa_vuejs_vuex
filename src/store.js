@@ -15,10 +15,10 @@ export default new Vuex.Store({
         setData(state, payload) {
             state.data = payload;
         },
-        setDataLength(state, payload){
+        setDataLength(state, payload) {
             state.dataLength = payload;
         },
-        setCurrentPage(state, payload){
+        setCurrentPage(state, payload) {
             state.currentPage = payload;
         }
     },
@@ -27,7 +27,8 @@ export default new Vuex.Store({
             try {
                 axios.get(`${state.apiUrl}`, {
                     params: {
-                        _page: state.currentPage
+                        _page: state.currentPage,
+                        _limit: 10
                     }
                 })
                 .then(function (response) {

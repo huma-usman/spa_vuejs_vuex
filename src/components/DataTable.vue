@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table id="my-table" :items="data" :per-page="0" :fields="fields">
+    <b-table id="my-table" :items="values" :per-page="0" :fields="fields">
       <template #cell(view)="row">
         <b-button v-model="row.detailsShowing" @click="row.toggleDetails">
           Details
@@ -29,7 +29,7 @@ export default {
     fields: ['id', 'value', 'name', 'view'],
   }),
   computed: {
-    data() {
+    values() {
       return this.$store.getters.dataArray
     }
   }

@@ -15,6 +15,9 @@ import DataChart from './components/DataChart.vue'
 
 export default {
   name: 'App',
+  mounted() {
+    this.$store.dispatch('getData');
+  },
   components: {
     DataTable,
     DataPagination,

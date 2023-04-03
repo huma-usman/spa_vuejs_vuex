@@ -10,6 +10,7 @@ import Chart from 'chart.js';
 export default {
   name: 'DataChart',
   mounted() {
+    this.$store.dispatch('getData');
     this.renderChart();
   },
   computed: {
@@ -58,7 +59,7 @@ export default {
             }]
           },
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: true
         }
       });
       const data = this.data;

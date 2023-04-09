@@ -9,7 +9,8 @@ export default new Vuex.Store({
         data: [],
         dataLength: 0,
         currentPage: 1,
-        apiUrl: 'http://localhost:3000/api/data'
+        apiUrl: 'http://localhost:3000/api/data',
+        selectedData: {}
     },
     mutations: {
         setData(state, payload) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
         },
         setCurrentPage(state, payload) {
             state.currentPage = payload;
+        },
+        setSelectedData(state, payload) {
+            state.selectedData = payload;
         }
     },
     actions: {
@@ -39,6 +43,16 @@ export default new Vuex.Store({
                 commit('setData', []);
             }
         },
+        getSelectedData({ state, commit }, id) {
+            try {
+                axios.get(`${state.apiUrl}/${id}`)
+                .then(function (response) {
+                    commit('setSelectedData', response.data);
+                  });
+            } catch (error) {
+                commit('setSelectedData', []);
+            }
+        },
         updatePage({state, commit}, page){
             commit('setCurrentPage', page);
         }
@@ -52,6 +66,9 @@ export default new Vuex.Store({
         },
         currentPageValue: state => {
             return state.currentPage;
+        },
+        currentSelectedData: state => {
+            return state.selectedData;
         }
     }
 });
